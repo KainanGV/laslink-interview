@@ -1,0 +1,11 @@
+# Arquivos e pastas do Visual Studio
+.vs/
+*.user
+*.suo
+
+# Build
+bin/
+obj/
+
+# Outros temporários
+*.log

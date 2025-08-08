@@ -1,0 +1,142 @@
+{
+    "info": {
+        "name": "LastLink Anticipation API",
+        "_postman_id": "d6f8c9b8-5c8f-4f1b-9d2f-2025-8",
+        "description": "Coleção de requests para a API de Antecipação da LastLink.",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Create Anticipation Request",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "url": {
+                    "raw": "{{baseUrl}}/api/AnticipationRequests",
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "path": [
+                        "api",
+                        "AnticipationRequests"
+                    ]
+                },
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"creatorId\": \"{{$guid}}\",\n  \"requestedAmount\": 250.0,\n  \"requestedAt\": \"{{$isoTimestamp}}\"\n}"
+                }
+            }
+        },
+        {
+            "name": "List by Creator",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "{{baseUrl}}/api/AnticipationRequests/{{creatorId}}",
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "path": [
+                        "api",
+                        "AnticipationRequests",
+                        "{{creatorId}}"
+                    ]
+                }
+            },
+            "variable": [
+                {
+                    "key": "creatorId",
+                    "value": "{{$guid}}"
+                }
+            ]
+        },
+        {
+            "name": "Approve Request",
+            "request": {
+                "method": "PUT",
+                "url": {
+                    "raw": "{{baseUrl}}/api/AnticipationRequests/{{id}}/approve",
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "path": [
+                        "api",
+                        "AnticipationRequests",
+                        "{{id}}",
+                        "approve"
+                    ]
+                }
+            },
+            "variable": [
+                {
+                    "key": "id",
+                    "value": "{{$guid}}"
+                }
+            ]
+        },
+        {
+            "name": "Reject Request",
+            "request": {
+                "method": "PUT",
+                "url": {
+                    "raw": "{{baseUrl}}/api/AnticipationRequests/{{id}}/reject",
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "path": [
+                        "api",
+                        "AnticipationRequests",
+                        "{{id}}",
+                        "reject"
+                    ]
+                }
+            },
+            "variable": [
+                {
+                    "key": "id",
+                    "value": "{{$guid}}"
+                }
+            ]
+        },
+        {
+            "name": "Simulate",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "{{baseUrl}}/api/AnticipationRequests/simulate?requestedAmount={{amount}}",
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "path": [
+                        "api",
+                        "AnticipationRequests",
+                        "simulate"
+                    ],
+                    "query": [
+                        {
+                            "key": "requestedAmount",
+                            "value": "{{amount}}"
+                        }
+                    ]
+                }
+            },
+            "variable": [
+                {
+                    "key": "amount",
+                    "value": "1000"
+                }
+            ]
+        }
+    ],
+    "variable": [
+        {
+            "key": "baseUrl",
+            "value": "https://localhost:7032"
+        }
+    ]
+}
